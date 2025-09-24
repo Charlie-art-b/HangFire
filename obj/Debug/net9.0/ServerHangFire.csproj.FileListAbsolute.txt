@@ -121,6 +121,7 @@ C:\Users\carlo\Escritorio\HangFire server\ServerHangFire\bin\Debug\net9.0\runtim
 C:\Users\carlo\Escritorio\HangFire server\ServerHangFire\bin\Debug\net9.0\runtimes\win-x86\native\vcruntime140.dll
 C:\Users\carlo\Escritorio\HangFire server\ServerHangFire\bin\Debug\net9.0\runtimes\win-x86\native\zlib1.dll
 C:\Users\carlo\Escritorio\HangFire server\ServerHangFire\bin\Debug\net9.0\runtimes\win-x86\native\zstd.dll
+<<<<<<< HEAD
 C:\Users\dilan\source\repos\HangFire\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\dilan\source\repos\HangFire\bin\Debug\net9.0\appsettings.json
 C:\Users\dilan\source\repos\HangFire\bin\Debug\net9.0\ServerHangFire.staticwebassets.endpoints.json
@@ -246,3 +247,6 @@ C:\Users\dilan\source\repos\HangFire\obj\Debug\net9.0\refint\ServerHangFire.dll
 C:\Users\dilan\source\repos\HangFire\obj\Debug\net9.0\ServerHangFire.pdb
 C:\Users\dilan\source\repos\HangFire\obj\Debug\net9.0\ServerHangFire.genruntimeconfig.cache
 C:\Users\dilan\source\repos\HangFire\obj\Debug\net9.0\ref\ServerHangFire.dll
+=======
+C:\Users\carlo\Escritorio\HangFire server\ServerHangFire\obj\Debug\net9.0\ServerHangFire.sourcelink.json
+>>>>>>> 3f172462d498f0c2ba984bb71b621d786474daab

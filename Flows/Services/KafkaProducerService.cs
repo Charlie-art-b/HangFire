@@ -32,7 +32,7 @@ namespace SERVERHANGFIRE.Flows.Services
             var config = new ProducerConfig
             {
                 BootstrapServers = options.Value.BootstrapServers,
-                MessageTimeoutMs = 5000
+                MessageTimeoutMs = 2000
             };
 
             _pdfProducer = new ProducerBuilder<Null, string>(config).Build();

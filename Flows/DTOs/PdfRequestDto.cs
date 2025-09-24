@@ -17,5 +17,6 @@ namespace SERVERHANGFIRE.Flows.DTOs
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public string CorrelationId { get; set; } = string.Empty;
+        public List <int> Products { get; set; } = new List <int> ();
     }
 }
