@@ -62,8 +62,7 @@
               "RelativeToolTip": "Flows\\Services\\KafkaProducerService.cs",
               "ViewState": "AgIAADEAAAAAAAAAAAAewCgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T03:09:34.641Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-24T03:09:34.641Z"
             },
             {
               "$type": "Document",
@@ -88,8 +87,7 @@
               "RelativeToolTip": "Controllers\\ReportsController.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAwwDMAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T03:11:57.942Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-24T03:11:57.942Z"
             },
             {
               "$type": "Document",
@@ -101,8 +99,7 @@
               "RelativeToolTip": "Flows\\Services\\HttpClientService.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAAwCMAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T03:10:53.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-24T03:10:53.066Z"
             },
             {
               "$type": "Document",
@@ -114,8 +111,7 @@
               "RelativeToolTip": "Flows\\DTOs\\PdfRequestDto.cs",
               "ViewState": "AgIAAAkAAAAAAAAAAAA5wBQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T03:10:38.529Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-24T03:10:38.529Z"
             },
             {
               "$type": "Document",
@@ -127,8 +123,7 @@
               "RelativeToolTip": "Flows\\DTOs\\ReportRequestDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-24T03:11:51.647Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-09-24T03:11:51.647Z"
             },
             {
               "$type": "Document",
