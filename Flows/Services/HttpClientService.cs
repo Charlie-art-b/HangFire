@@ -18,7 +18,7 @@ namespace SERVERHANGFIRE.Flows.Services
 
         public HttpClientService(
             HttpClient httpClient, 
-            IKafkaProducerService kafkaProducer, // Inyectamos el servicio de Kafka
+            IKafkaProducerService kafkaProducer, 
             ILogger<HttpClientService> logger)
         {
             _httpClient = httpClient;

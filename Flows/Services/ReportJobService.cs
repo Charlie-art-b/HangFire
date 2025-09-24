@@ -6,7 +6,7 @@ namespace SERVERHANGFIRE.Flows.Services
 {
     public interface IReportJobService
     {
-        Task ProcessReportRequest(int customerId, DateTime startDate, DateTime endDate, string correlationId);
+        Task ProcessReportRequest(int customerId, DateTime startDate, DateTime endDate, string correlationId ,List<int> products);
     }
 
     public class ReportJobService : IReportJobService
@@ -26,7 +26,7 @@ namespace SERVERHANGFIRE.Flows.Services
         }
 
         [AutomaticRetry(Attempts = 3)]
-        public async Task ProcessReportRequest(int customerId, DateTime startDate, DateTime endDate, string correlationId)
+        public async Task ProcessReportRequest(int customerId, DateTime startDate, DateTime endDate, string correlationId, List<int> products)
         {
             var log = new LogRequestDto
             {
@@ -37,6 +37,7 @@ namespace SERVERHANGFIRE.Flows.Services
                 Payload = $"CustomerId: {customerId}, StartDate: {startDate:yyyy-MM-dd}, EndDate: {endDate:yyyy-MM-dd}",
                 Success = false
             };
+            log.Payload += $", Productos: {string.Join(", ", products)}";
 
             try
             {
@@ -48,7 +49,8 @@ namespace SERVERHANGFIRE.Flows.Services
                     CustomerId = customerId,
                     StartDate = startDate,
                     EndDate = endDate,
-                    CorrelationId = correlationId
+                    CorrelationId = correlationId,
+                    Products = products
                 };
 
                 // Enviar solicitud al PDF server (simulado)
@@ -66,7 +68,7 @@ namespace SERVERHANGFIRE.Flows.Services
                 }
                 else
                 {
-                    _logger.LogWarning("⚠️ Procesamiento completado con errores. CorrelationId={CorrelationId}", correlationId);
+                    _logger.LogWarning("⚠ Procesamiento completado con errores. CorrelationId={CorrelationId}", correlationId);
                 }
             }
             catch (Exception ex)

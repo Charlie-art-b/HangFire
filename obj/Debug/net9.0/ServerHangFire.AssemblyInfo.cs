@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ServerHangFire")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b72fd2208a8ce10dd711ab0ed89394813cba079a")]
 [assembly: System.Reflection.AssemblyProductAttribute("ServerHangFire")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ServerHangFire")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

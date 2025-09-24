@@ -20,6 +20,12 @@ namespace SERVERHANGFIRE.Flows.Validation
                 return false;
             }
 
+            if (request.Products == null || !request.Products.Any())
+            {
+                errorMessage = "Debe incluir al menos un producto";
+                return false;
+            }
+
             return true;
         }
     }

@@ -12,17 +12,21 @@ namespace SERVERHANGFIRE.Controllers
     public class ReportsController : ControllerBase
     {
         private readonly IBackgroundJobClient _hangfire;
+
+        private readonly IHttpClientService _httpClientService;
         private readonly IKafkaProducerService _kafkaProducer;
         private readonly ILogger<ReportsController> _logger;
 
         public ReportsController(
             IBackgroundJobClient hangfire,
             IKafkaProducerService kafkaProducer,
-            ILogger<ReportsController> logger)
+            ILogger<ReportsController> logger,
+            IHttpClientService httpClientService)
         {
             _hangfire = hangfire;
             _kafkaProducer = kafkaProducer;
             _logger = logger;
+            _httpClientService = httpClientService;
         }
 
         [HttpPost]
@@ -43,15 +47,26 @@ namespace SERVERHANGFIRE.Controllers
             {
                 // Programar tarea retrasada (5 minutos como pide el requerimiento)
                 _hangfire.Schedule<IReportJobService>(
+
                     job => job.ProcessReportRequest(
                         request.CustomerId,
                         request.StartDate,
                         request.EndDate,
-                        correlationId
+                        correlationId,
+                        request.Products
                     ),
-                    TimeSpan.FromMinutes(5) // 5 minutos de delay
-                );
 
+                
+                    TimeSpan.FromMinutes(2) // 5 minutos de delay
+                );
+                 await _httpClientService.SendReportRequestAsync(new PdfRequestDto
+                {
+                    CorrelationId = correlationId,
+                    CustomerId = request.CustomerId,
+                    StartDate = request.StartDate,
+                    EndDate = request.EndDate,
+                    Products = request.Products
+                });
                 // Log inicial
                 var initialLog = new LogRequestDto
                 {
@@ -60,12 +75,14 @@ namespace SERVERHANGFIRE.Controllers
                     Endpoint = "CreateReport",
                     Timestamp = DateTime.UtcNow,
                     Payload = $"Solicitud recibida - CustomerId: {request.CustomerId}, " +
-                             $"Rango: {request.StartDate:yyyy-MM-dd} a {request.EndDate:yyyy-MM-dd}",
+                         $"Rango: {request.StartDate:yyyy-MM-dd} a {request.EndDate:yyyy-MM-dd}, " +
+                         $"Productos: {string.Join(", ", request.Products)}",
                     Success = true
+
                 };
 
                 await _kafkaProducer.SendLogAsync(initialLog);
-
+                
                 _logger.LogInformation("✅ Solicitud encolada. CorrelationId={CorrelationId}", correlationId);
 
                 return Ok(new
