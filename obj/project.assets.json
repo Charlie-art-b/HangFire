@@ -2274,23 +2274,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\carlo\\.nuget\\packages\\": {},
+    "C:\\Users\\dilan\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\carlo\\Escritorio\\HangFire server\\ServerHangFire\\ServerHangFire.csproj",
+      "projectUniqueName": "C:\\Users\\dilan\\source\\repos\\HangFire\\ServerHangFire.csproj",
       "projectName": "ServerHangFire",
-      "projectPath": "C:\\Users\\carlo\\Escritorio\\HangFire server\\ServerHangFire\\ServerHangFire.csproj",
-      "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\carlo\\Escritorio\\HangFire server\\ServerHangFire\\obj\\",
+      "projectPath": "C:\\Users\\dilan\\source\\repos\\HangFire\\ServerHangFire.csproj",
+      "packagesPath": "C:\\Users\\dilan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dilan\\source\\repos\\HangFire\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dilan\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2367,7 +2367,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

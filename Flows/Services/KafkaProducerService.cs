@@ -9,18 +9,22 @@ namespace SERVERHANGFIRE.Flows.Services
     public class KafkaOptions
     {
         public string BootstrapServers { get; set; } = "localhost:9092";
-        public string Topic { get; set; } = "hangfire-logs";
+        public string LogsTopic { get; set; } = "hangfire-logs";
+        public string PdfRequestsTopic { get; set; } = "pdf-requests";
     }
 
     public interface IKafkaProducerService
     {
         Task<bool> SendLogAsync(LogRequestDto log);
+        Task<bool> SendPdfRequestAsync(PdfRequestDto request);
     }
 
     public class KafkaProducerService : IKafkaProducerService, IDisposable
     {
-        private readonly IProducer<Null, string> _producer;
-        private readonly string _topic;
+        private readonly IProducer<Null, string> _pdfProducer;
+        private readonly IProducer<Null, string> _logProducer;
+        private readonly string _pdfTopic;
+        private readonly string _logTopic;
         private readonly ILogger<KafkaProducerService> _logger;
 
         public KafkaProducerService(IOptions<KafkaOptions> options, ILogger<KafkaProducerService> logger)
@@ -31,9 +35,29 @@ namespace SERVERHANGFIRE.Flows.Services
                 MessageTimeoutMs = 5000
             };
 
-            _producer = new ProducerBuilder<Null, string>(config).Build();
-            _topic = options.Value.Topic;
+            _pdfProducer = new ProducerBuilder<Null, string>(config).Build();
+            _logProducer = new ProducerBuilder<Null, string>(config).Build();
+
+            _pdfTopic = options.Value.PdfRequestsTopic;
+            _logTopic = options.Value.LogsTopic;
+
             _logger = logger;
+        }
+
+        public async Task<bool> SendPdfRequestAsync(PdfRequestDto request)
+        {
+            try
+            {
+                var message = JsonSerializer.Serialize(request);
+                await _pdfProducer.ProduceAsync(_pdfTopic, new Message<Null, string> { Value = message });
+                _logger.LogInformation("✅ PDF Request enviado a Kafka. CorrelationId={CorrelationId}", request.CorrelationId);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "❌ Error al enviar PDF request a Kafka. CorrelationId={CorrelationId}", request.CorrelationId);
+                return false;
+            }
         }
 
         public async Task<bool> SendLogAsync(LogRequestDto log)
@@ -41,8 +65,7 @@ namespace SERVERHANGFIRE.Flows.Services
             try
             {
                 var message = JsonSerializer.Serialize(log);
-                var result = await _producer.ProduceAsync(_topic, new Message<Null, string> { Value = message });
-
+                await _logProducer.ProduceAsync(_logTopic, new Message<Null, string> { Value = message });
                 _logger.LogInformation("✅ Log enviado a Kafka. CorrelationId={CorrelationId}", log.CorrelationId);
                 return true;
             }
@@ -55,8 +78,10 @@ namespace SERVERHANGFIRE.Flows.Services
 
         public void Dispose()
         {
-            _producer?.Flush(TimeSpan.FromSeconds(5));
-            _producer?.Dispose();
+            _pdfProducer?.Flush(TimeSpan.FromSeconds(5));
+            _pdfProducer?.Dispose();
+            _logProducer?.Flush(TimeSpan.FromSeconds(5));
+            _logProducer?.Dispose();
         }
     }
 }

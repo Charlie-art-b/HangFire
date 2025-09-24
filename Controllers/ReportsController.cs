@@ -49,7 +49,7 @@ namespace SERVERHANGFIRE.Controllers
                         request.EndDate,
                         correlationId
                     ),
-                    TimeSpan.FromMinutes(5) // 5 minutos de delay
+                    TimeSpan.FromMinutes(1) // 5 minutos de delay
                 );
 
                 // Log inicial

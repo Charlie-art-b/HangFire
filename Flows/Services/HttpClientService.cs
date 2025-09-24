@@ -30,23 +30,25 @@ namespace SERVERHANGFIRE.Flows.Services
         {
             try
             {
-                var response = await _httpClient.PostAsJsonAsync("https://webhook.site/adf6bb7a-d640-4edb-a445-83d1b1905ae1", request);
+                Console.WriteLine($"Payload a enviar al PDF server: {System.Text.Json.JsonSerializer.Serialize(request)}");
 
-                if (response.IsSuccessStatusCode)
+                // Enviar solicitud al PDF server vía Kafka
+                var success = await _kafkaProducer.SendPdfRequestAsync(request);
+
+                if (success)
                 {
-                    _logger.LogInformation("✅ PDF server respondió correctamente. CorrelationId={CorrelationId}", request.CorrelationId);
-                    return true;
+                    _logger.LogInformation("✅ PDF request enviado correctamente a Kafka. CorrelationId={CorrelationId}", request.CorrelationId);
                 }
                 else
                 {
-                    _logger.LogError("❌ PDF server devolvió error {StatusCode}. CorrelationId={CorrelationId}", 
-                        response.StatusCode, request.CorrelationId);
-                    return false;
+                    _logger.LogError("❌ Error al enviar PDF request a Kafka. CorrelationId={CorrelationId}", request.CorrelationId);
                 }
+
+                return success;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "❌ Error al conectar con el PDF server. CorrelationId={CorrelationId}", request.CorrelationId);
+                _logger.LogError(ex, "❌ Excepción al enviar PDF request a Kafka. CorrelationId={CorrelationId}", request.CorrelationId);
                 return false;
             }
         }

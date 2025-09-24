@@ -1,0 +1,18 @@
+[
+  {
+    "ContainingType": "SERVERHANGFIRE.Controllers.ReportsController",
+    "Method": "CreateReport",
+    "RelativePath": "api/Reports",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "SERVERHANGFIRE.Flows.DTOs.ReportRequestDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
