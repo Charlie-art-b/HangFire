@@ -55,14 +55,8 @@ namespace SERVERHANGFIRE.Controllers
                         correlationId,
                         request.Products
                     ),
-<<<<<<< HEAD
-                    TimeSpan.FromMinutes(1) // 5 minutos de delay
-                );
-=======
->>>>>>> 3f172462d498f0c2ba984bb71b621d786474daab
 
-                
-                    TimeSpan.FromMinutes(2) // 5 minutos de delay
+                    TimeSpan.FromMinutes(1) // 5 minutos de delay
                 );
                  await _httpClientService.SendReportRequestAsync(new PdfRequestDto
                 {
